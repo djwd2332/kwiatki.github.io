@@ -1,0 +1,188 @@
+* {
+  box-sizing: border-box;
+}
+:root {
+  --unit: 1vmin;
+  --stroke: #333;
+  --stroke-border: 1vmin solid #333;
+}
+body {
+  background: #e5ffff;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+.flower {
+  --petal-color: hsl(var(--hue), 100%, 80%);
+  height: calc(var(--size, 20) * var(--unit));
+  width: calc(var(--size, 20) * var(--unit));
+  position: absolute;
+  top: calc(var(--y) * 1%);
+  left: calc(var(--x) * 1%);
+  -webkit-animation: grow 0.25s calc(var(--delay, 0) * 1s) both cubic-bezier(0.35, 0.81, 0.87, 1.43);
+          animation: grow 0.25s calc(var(--delay, 0) * 1s) both cubic-bezier(0.35, 0.81, 0.87, 1.43);
+}
+.flower *,
+.flower *:after,
+.flower *:before {
+  position: absolute;
+}
+.flower__core {
+  top: 50%;
+  left: 50%;
+  height: 30%;
+  width: 30%;
+  border-radius: 50%;
+  border: var(--stroke-border);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: #f2f20d;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+.flower__core:after,
+.flower__core:before {
+  content: '';
+  height: 25%;
+  width: 220%;
+  background: var(--stroke);
+  border-radius: 5%/50%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, -1px);
+          transform: translate3d(-50%, -50%, -1px);
+}
+.flower__core:after {
+  -webkit-transform: translate3d(-50%, -50%, -1px) rotate(90deg);
+          transform: translate3d(-50%, -50%, -1px) rotate(90deg);
+}
+.flower__petal {
+  height: 50%;
+  width: 50%;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+  -webkit-clip-path: polygon(-50% 0, 50% 100%, 150% 0);
+  clip-path: polygon(-50% 0, 50% 100%, 150% 0);
+}
+.flower__petal:after {
+  content: '';
+  width: 60%;
+  left: 50%;
+  height: 100%;
+  border-radius: 50%;
+  border-top: u(10) solid var(--petal-color, var(--default-petal-color));
+  -webkit-transform-origin: 50% 0;
+          transform-origin: 50% 0;
+  -webkit-transform: translate(-50%, 0) rotate(180deg) translate(0, -34%);
+          transform: translate(-50%, 0) rotate(180deg) translate(0, -34%);
+  -webkit-clip-path: inset(0 0 80% 0);
+  clip-path: inset(0 0 80% 0);
+}
+.flower__petal--0 {
+  -webkit-transform: translate(-50%, 0) rotate(0deg);
+          transform: translate(-50%, 0) rotate(0deg);
+}
+.flower__petal--1 {
+  -webkit-transform: translate(-50%, 0) rotate(90deg);
+          transform: translate(-50%, 0) rotate(90deg);
+}
+.flower__petal--2 {
+  -webkit-transform: translate(-50%, 0) rotate(180deg);
+          transform: translate(-50%, 0) rotate(180deg);
+}
+.flower__petal--3 {
+  -webkit-transform: translate(-50%, 0) rotate(270deg);
+          transform: translate(-50%, 0) rotate(270deg);
+}
+.flower__petal > div:nth-of-type(1) {
+  left: 50%;
+  width: 60%;
+  height: 100%;
+  bottom: 0;
+  border-radius: 50%/25%;
+  background: var(--stroke);
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+  -webkit-transform: translate(-50%, 0) rotate(-23deg) translate(0, 0);
+          transform: translate(-50%, 0) rotate(-23deg) translate(0, 0);
+}
+.flower__petal > div:nth-of-type(2) {
+  left: 50%;
+  width: 60%;
+  height: 100%;
+  border-radius: 50%/25%;
+  background: var(--stroke);
+  -webkit-transform-origin: 50% 100%;
+          transform-origin: 50% 100%;
+  -webkit-transform: translate(-50%, 0) rotate(23deg) translate(0, 0);
+          transform: translate(-50%, 0) rotate(23deg) translate(0, 0);
+}
+.flower__petal > div:nth-of-type(2):after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  border-top: u(10) solid var(--stroke);
+  border-radius: 50%;
+  -webkit-transform-origin: 50% 0;
+          transform-origin: 50% 0;
+  -webkit-transform: rotate(-23deg) rotate(-180deg) translate(65%, -18%);
+          transform: rotate(-23deg) rotate(-180deg) translate(65%, -18%);
+  -webkit-clip-path: inset(0 0 81% 0);
+  clip-path: inset(0 0 81% 0);
+}
+.flower__petal > div:nth-of-type(3) {
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+  -webkit-clip-path: polygon(-34% 0, 50% 90%, 134% 0);
+  clip-path: polygon(-34% 0, 50% 90%, 134% 0);
+}
+.flower__petal > div:nth-of-type(3):after,
+.flower__petal > div:nth-of-type(3):before {
+  content: '';
+  height: 100%;
+  width: 43%;
+  left: 50%;
+  bottom: 0;
+  border-radius: 50%/25%;
+  background: var(--petal-color, var(--default-petal-color));
+}
+.flower__petal > div:nth-of-type(3):before {
+  -webkit-transform: translate(-50%, 0) rotate(37deg) translate(27%, 0%);
+          transform: translate(-50%, 0) rotate(37deg) translate(27%, 0%);
+}
+.flower__petal > div:nth-of-type(3):after {
+  -webkit-transform: translate(-50%, 0) rotate(-37deg) translate(-27%, 0%);
+          transform: translate(-50%, 0) rotate(-37deg) translate(-27%, 0%);
+}
+@-webkit-keyframes grow {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(calc(var(--r, 0) * 1deg)) scale(0);
+            transform: translate(-50%, -50%) rotate(calc(var(--r, 0) * 1deg)) scale(0);
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(calc(var(--r, 0) * 1deg)) scale(1);
+            transform: translate(-50%, -50%) rotate(calc(var(--r, 0) * 1deg)) scale(1);
+  }
+}
+@keyframes grow {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(calc(var(--r, 0) * 1deg)) scale(0);
+            transform: translate(-50%, -50%) rotate(calc(var(--r, 0) * 1deg)) scale(0);
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(calc(var(--r, 0) * 1deg)) scale(1);
+            transform: translate(-50%, -50%) rotate(calc(var(--r, 0) * 1deg)) scale(1);
+  }
+}
